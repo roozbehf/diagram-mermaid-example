@@ -1,0 +1,11 @@
+sequenceDiagram
+    participant B as Browser
+    participant A as API
+    participant C as Language KB
+
+    B ->> +A: GET /greet?name=José&lan=es
+    A ->> +C: fetch(greeting, 'es')
+
+    C ->> -A: '¡Hola!'
+    A ->> -B: '¡Hola José!'
+    
