@@ -14,8 +14,9 @@ MMD_DOC ?= $(MMD_DOC_FILE:.mmd=)
 
 TIME_STAMP=$(shell date +"%y%m%d-%H%M")
 
-DOCKER_IMAGE=theroozbeh/mermaid:latest
-# DOCKER_IMAGE=mermaid:local
+DOCKER_IMAGE=minlag/mermaid-cli:latest
+# Deprecated: 
+# DOCKER_IMAGE=theroozbeh/mermaid:latest
 
 CMD=docker run --rm -v `pwd`:/data:z -u `id -u` $(DOCKER_IMAGE)
 
@@ -23,10 +24,10 @@ clean:
 	rm -f *.pdf *.png
 	
 png:
-	$(MAKE) _gen OUTPUT_EXT=png
+	@$(MAKE) _gen OUTPUT_EXT=png
 
 pdf: 
-	$(MAKE) _gen OUTPUT_EXT=pdf
+	@$(MAKE) _gen OUTPUT_EXT=pdf
 
 publish:
 	@mkdir -p $(PUBLISHED_DIR)
@@ -36,10 +37,11 @@ publish:
 		fi; \
 	done
 
-info: 
-	$(CMD) -p /puppeteer-config.json --version
+info:
+	@echo Using $(DOCKER_IMAGE)
+	@$(CMD) --version
 
-_gen: _mermaid open
+_gen: _mermaid
 
 _mermaid: 
-	$(CMD) -p /puppeteer-config.json -i $(MMD_DOC).mmd -o $(MMD_DOC).$(OUTPUT_EXT) -C mermaid.css 
+	@$(CMD) -i /data/$(MMD_DOC).mmd -o /data/$(MMD_DOC).$(OUTPUT_EXT) -C /data/mermaid.css 

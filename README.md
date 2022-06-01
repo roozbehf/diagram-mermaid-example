@@ -13,9 +13,7 @@ The [example.mmd](example.mmd) file here is a simple sequence diagaram. You can 
 
 ## Makefile
 
-In order to remove the need to install any tools and packages, I made a docker image containing Mermaid and made this [Makefile](Makefile) to build PDF and PNG diagrams.
-
-The docker image is built based on [github.com/roozbehf/docker-mermaid](https://github.com/roozbehf/docker-mermaid).
+In order to remove the need to install any tools and packages, the [Makefile](Makefile) is using the [official Docker image](https://hub.docker.com/r/minlag/mermaid-cli) to build PDF and PNG diagrams.
 
 ### Requirements
 - Docker
