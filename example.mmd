@@ -3,9 +3,9 @@ sequenceDiagram
     participant A as API
     participant C as Language KB
 
-    B ->> +A: GET /greet?name=José&lan=es
-    A ->> +C: fetch(greeting, 'es')
+    B ->> +A: GET /greet?name=James&lan=en
+    A ->> +C: fetch(greeting, 'de')
 
-    C ->> -A: '¡Hola!'
-    A ->> -B: '¡Hola José!'
+    C ->> -A: 'Hallo!'
+    A ->> -B: 'Hallo James!'
     
